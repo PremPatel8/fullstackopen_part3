@@ -29,10 +29,12 @@ app.get("/", (request, response) => {
   response.send("<h1>Hello World!</h1>");
 });
 
+// 3.1: Phonebook backend step1
 app.get("/api/persons", (request, response) => {
   response.json(persons);
 });
 
+// 3.3: Phonebook backend step3
 app.get("/api/persons/:id", (request, response) => {
   const id = Number(request.params.id);
   const person = persons.find((person) => person.id === id);
@@ -44,6 +46,7 @@ app.get("/api/persons/:id", (request, response) => {
   }
 });
 
+// 3.2: Phonebook backend step2
 app.get("/api/info", (request, response) => {
     response.send(`<p>Phonebook has info for ${persons.length} people</p><p>${new Date()}</p>`);
   });
