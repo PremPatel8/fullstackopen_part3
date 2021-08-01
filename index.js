@@ -51,6 +51,7 @@ app.get("/api/info", (request, response) => {
     response.send(`<p>Phonebook has info for ${persons.length} people</p><p>${new Date()}</p>`);
   });
 
+// 3.4: Phonebook backend step4
 app.delete("/api/persons/:id", (request, response) => {
   const id = Number(request.params.id);
   persons = persons.filter((person) => person.id !== id);
