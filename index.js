@@ -61,17 +61,33 @@ app.delete("/api/persons/:id", (request, response) => {
   response.status(204).end();
 });
 
-// 3.5: Phonebook backend step5
+// 3.6: Phonebook backend step6
 const generateId = () => {
   return Math.floor(Math.random() * 1000);
 };
-
+// 3.6: Phonebook backend step6
 app.post("/api/persons", (request, response) => {
   const body = request.body;
 
-  if (!body.name || !body.number) {
+  if (!body.name && !body.number) {
     return response.status(400).json({
       error: "content missing",
+    });
+  }
+
+  if (!body.name) {
+    return response.status(400).json({
+      error: "Name is missing",
+    });
+  }
+
+  if (persons.some((person) => person.name === body.name)) {
+    return response.status(400).json({ error: "name must be unique" });
+  }
+
+  if (!body.number) {
+    return response.status(400).json({
+      error: "Number is missing",
     });
   }
 
